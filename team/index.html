@@ -1,0 +1,101 @@
+---
+layout: "default"
+title: Team
+section: team
+comments: false
+sharing: true
+footer: true
+exclude_from_search: true
+---
+
+<div id="page-sidebar">
+  <ul>
+    <li><a href="#student">Student Team</a></li>
+    <li><a href="#faculty">Faculty Team</a></li>
+  </ul>
+</div>
+<div id="open-source-content">
+  <div id="lead">
+    <h1>We love open source at UltraProject.</h1>
+  </div>
+
+  <section id="student" class="open-source-category">
+    <div class="open-source-category-header">
+      <div class="open-source-category-header-title"><span><b>Student Team</b></span></div>
+      <footer></footer>
+    </div>
+    <ul>
+        {% for member in site.student_members %}
+            <li>
+                {% if member['website'] %}
+                    <a href="{{ member['website'] }}" target="_blank">{{ member["name"] }}</a>
+                {% else %}
+                    {{ member["name"] }}
+                {% endif %}
+                <span class="affiliation">{{ member['affiliation'] }}</span>
+            </li>
+        {% endfor %}
+
+    </ul>
+    
+  </section>
+
+  <section id="faculty" class="open-source-category">
+    <div class="open-source-category-header">
+      <div class="open-source-category-header-title"><span><b>Faculty Team</b></span></div>
+      <footer></footer>
+    </div>
+    <ul>
+        {% for member in site.faculty_members %}
+            <li>
+                {% if member['website'] %}
+                    <a href="{{ member['website'] }}" target="_blank">{{ member["name"] }}</a>
+                {% else %}
+                    {{ member["name"] }}
+                {% endif %}
+                <span class="affiliation">{{ member['affiliation'] }}</span>
+            </li>
+        {% endfor %}
+
+    </ul>
+    
+  </section>
+
+
+</div>
+<footer>
+</footer>
+
+
+<script type="text/javascript">
+// stick open source category sidebar
+var sticky = new Waypoint.Sticky({
+    element: $("#page-sidebar"),
+    handler: function(direction) {
+  },
+  offset: 210
+})
+
+// scroll to each section smoothly
+$('#page-sidebar a').click( function() {
+  var section = $(this).attr("href");
+  $('html, body').animate({
+    scrollTop: ($(section).offset().top - 210)
+  }, 800);
+});
+
+// set active section when scrolled to
+$("section").each( function(index, category) {
+  var waypoint = new Waypoint({
+    element: category,
+    handler: function(direction) {
+      var active_section = $(category);
+      if (direction === "up") active_section = active_section.prev();
+      var active_link = $('#page-sidebar a[href="#' + active_section.attr('id') + '"]');
+      $('#page-sidebar a').removeClass("selected");
+      active_link.addClass("selected");
+    },
+    offset: 250
+  })
+})
+</script>

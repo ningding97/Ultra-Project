@@ -3,7 +3,7 @@ layout: epic
 title: "Are you using the right Mongo geospatial query?"
 date: 2023-02-10
 categories: [MongoDB, geospatial, best practices, gravity, debugging]
-author: [roop]
+author: [orta]
 ---
 
 We recently got a report from one of our galleries in the Los Angeles area that

@@ -11,15 +11,15 @@
     <div id="bodywrapper">
       <header>
         <ul>
-          <li><a href="/">Artsy Engineering Blog</a></li>
-          <li><a href="https://www.artsy.net/jobs">Careers</a></li>
-          <li><a href="https://developers.artsy.net">API</a></li>
+          <li><a href="/blog/">UltraProject Blog</a></li>
+          <li><a href="/jobs">Careers</a></li>
+          <li><a href="/api">API</a></li>
         </ul>
 
         <ul>
-          <li><a href="http://artsy.github.io/open-source/">Our Open Source</a></li>
-          <li><a href="http://twitter.com/artsyopensource">@artsyopensource</a></li>
-          <li><a href="https://www.artsy.net">artsy.net</a></li>
+          <li><a href="/">Frontpage</a></li>
+          <li><a href="https://github.com/OpenBMB">OpenBMB Community</a></li>
+          <!-- <li><a href="https://www.artsy.net">artsy.net</a></li> -->
         </ul>
       </header>
 
@@ -30,7 +30,7 @@
           <!-- Yep, single line so the comma lines up right -->
           By {% for key in page.author %}{% assign author = site.authors[key] %}{% if forloop.index > 1 %},{% endif %} {{ author.name }}{% endfor %}
           </h3>
-          <time datetime="{{page.date | date: "%Y-%m-%d"}}">{{ page.date | date: "%b %-d, %Y" }}</time>
+          <time datetime="{{page.date | date: '%Y-%m-%d'}}">{{ page.date | date: "%b %-d, %Y" }}</time>
         </header>
 
         <article class='post'>
@@ -44,7 +44,7 @@
                 <path transform="scale(1, -1) translate(0, -480)" d="M0 -32h512v512h-512v-512v0zM464 16h-80v80h-48v-80h-288v416h416v-416v0zM194 384h-40l-74 -186h38l20 52h72l19 -52h39l-74 186v0zM149 282l25 66l24 -66h-49v0z"></path>
               </svg>
             </a>
-          <p/>
+          </p>
         </article>
 
         <aside class="related-articles"></aside>
@@ -73,37 +73,36 @@
           </section>
           <br/>
           <section>
-            <h4>Artsy OSS</h4>
+            <h4>UltraProject</h4>
             <ul>
-              <li><a href='https://www.artsy.net'>Artsy.net</a></li>
-              <li><a href='https://developers.artsy.net'>API</a></li>
-              <li><a href='http://artsy.github.io/open-source/'>Featured OSS</a></li>
-              <li><a href='https://www.artsy.net/jobs'>Careers</a></li>
+              <li><a href='/#project'>Projects</a></li>
+              <li><a href='/#dataset'>Datasets</a></li>
+              <li><a href='/#model'>Models</a></li>
+              <li><a href='/#communit'>Community Works</a></li>
             </ul>
           </section>
 
           <section>
             <h4>Blog</h4>
             <ul>
-              <li><a href='http://artsy.github.io/blog/archives/'>Archives</a></li>
+              <li><a href='/blog/archives/'>Archives</a></li>
               <!-- TODO: bring back a different version of site search  -->
-              <!-- <li><a href='http://artsy.github.io/search/'>Search</a></li> -->
-              <li><a href='https://github.com/artsy/artsy.github.io'>Code on GitHub</a></li>
-              <li><a href='https://github.com/artsy/artsy.github.io/edit/source/{{page.path}}'>Fix typos in this post</a></li>
+              <!-- <li><a href='https://github.com/artsy/artsy.github.io'>Code on GitHub</a></li> -->
+              <!-- <li><a href='https://github.com/artsy/artsy.github.io/edit/source/{{page.path}}'>Fix typos in this post</a></li> -->
             </ul>
           </section>
 
         </article>
 
         <article>
-          <section>
+          <!-- <section>
             <h4>Post Series on the Blog</h4>
             <ul>
               {% for series in site.series %}
               <li><a href='/{{ series.url }}'>{{series.title}}</a></li>
               {% endfor %}
             </ul>
-          </section>
+          </section> -->
 
           <section>
           {% if page.series %}

@@ -10,7 +10,18 @@
 @import "partials/syntax";
 @import "custom/styles";
 
-$highlight-color: #6A00CC;
+// Make selection with a self-defined background
+::selection {
+  background: #50157d; 
+  color: #ffffff; 
+}
+
+.affiliation {
+  color: #907890; /* 灰紫色的颜色代码 */
+}
+
+
+$highlight-color: #50157d;
 $text-color: #636;
 
 @mixin ellipsis {
@@ -57,13 +68,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
 
-  background-image: url(/images/gradient.png);
-  background-repeat: repeat-x;
-  background-position: 0px 0px;
+  // background-image: url(/images/gradient.png);
+  // background-repeat: repeat-x;
+  // background-position: 0px 0px;
+
+  // background: linear-gradient(to bottom, rgb(206, 175, 255) 0%, rgb(255, 235, 255) 100%);
+  // background-attachment: fixed;
 
   @media screen and (max-width: 799px) {
     margin: 20px;
   }
+
+  height: 100%; /* 让 body 高度填满整个视口 */
+  overflow-x: hidden; /* 防止横向滚动 */
+
   max-width: none;
   margin: auto;
   line-height: normal;
@@ -72,6 +90,26 @@ body {
     text-decoration: none;
   }
 }
+
+/* 使用伪元素创建渐变背景 */
+body::before {
+  content: ''; /* 伪元素需要content属性 */
+  display: block;
+  position: absolute; /* 改用绝对定位 */
+  width: 100%; /* 伪元素宽度与视口一致 */
+  height: 1500px; /* 渐变背景的固定高度 */
+  top: 0; /* 从顶部开始 */
+  left: 0;
+  background: linear-gradient(to bottom, rgb(199, 156, 255) 0%, rgb(255, 255, 255) 100%);
+  z-index: -1; /* 确保伪元素位于内容之下 */
+}
+
+.main-content {
+  position: relative; /* 相对定位使得z-index生效 */
+  z-index: 1; /* 设置高于伪元素，确保内容显示在渐变层之上 */
+  background: transparent; /* 设置透明背景，以显示下方的渐变 */
+}
+
 
 h1, h2, h3 {
   font-size: 20px;
@@ -197,10 +235,13 @@ blockquote {
 header#banner {
   width: 100%;
   z-index: 999;
-  background-image: url(/images/gradient.png);
-  background-repeat: repeat-x;
+  // background-image: url(/images/gradient.png);
+  // background-repeat: repeat-x;
   background-position: 0px 0px;
-  background-color: $artsy_bg;
+  // background: linear-gradient(to bottom, rgb(239, 255, 251) 0%, rgb(200, 240, 230) 100%);
+  // background-attachment: fixed;
+
+  background-color: #ffffff;
 
   &.stuck {
     position: fixed;
@@ -209,14 +250,14 @@ header#banner {
 
   #header {
     @include desktop-container;
-    padding-top: 40px;
+    padding-top: 20px;
     position: relative;
-    height: 180px;
+    height: 50px;
     border-bottom: 1px solid $artsy-text;
 
     .header-navigation{
       margin-left: 250px;
-      height: 100px;
+      height: 50px;
       position: static;
       ul{
         float: left;
@@ -236,11 +277,22 @@ header#banner {
 
     .header-sticky-container{
       width: 100%;
-      padding-bottom: 40px;
+      padding-bottom: 20px;
     }
 
     .header-section-title{
       float: right;
+      ul{
+        float: left;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+      li{
+         float: left;
+         margin: 0 40px 0 0;
+         display: block;
+      }
     }
 
     .header-logo{
@@ -1087,3 +1139,4 @@ table  a {
 p a code {
   font-size: 0.7em;
 }
+
