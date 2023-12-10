@@ -537,8 +537,7 @@ blockquote {
 header#banner {
   width: 100%;
   z-index: 999;
-  background-position: 0px 0px;
-  background-color: #ffffff; }
+  background-position: 0px 0px; }
   header#banner.stuck {
     position: fixed;
     top: -100px; }
