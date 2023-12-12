@@ -3,7 +3,7 @@ name: Build and Deploy Jekyll Site
 on:
   push:
     branches:
-      - xubk  # 或者你的默认分支名称，比如 master
+      - xubk  # Your branch name, once push to this branch, action will be done.
 
 permissions:
   contents: write
@@ -34,6 +34,6 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_gh-pages  # Jekyll 构建的输出目录
-        publish_branch: gh-pages  # 新分支的名称
-        keep_files: false  # 设置为 true 以保留现有文件
+        publish_dir: ./_gh-pages  # Jekyll build output directory
+        publish_branch: gh-pages  # branch name to publish
+        keep_files: false 

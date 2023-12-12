@@ -231,6 +231,34 @@ oss_projects:
     created: Apr 3rd, 2023
 ```
 
+### Github Pages
+
+Modify `.github/workflows/jekyll.yml`.
+
+```yml
+on:
+  push:
+    branches:
+      - xubk  # Your branch name, once push to this branch, build process on Github server will be invoked.
+
+```
+
+After build on Github server, automatically deploy build file to `gh-pages` branch.
+
+```yml
+
+  - name: Deploy to GitHub Pages
+    uses: peaceiris/actions-gh-pages@v3
+    with:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      publish_dir: ./_gh-pages  # Jekyll build output directory
+      publish_branch: gh-pages  # branch name to publish
+      keep_files: false 
+
+```
+
+In Github pages, set Github Pages publish branch to `gh-pages`.
+
 
 
 ## About Artsy
