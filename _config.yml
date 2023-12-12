@@ -1,9 +1,9 @@
-url: ""
+url: "https://ningding97.github.io/ultrtaproject_website/"
 title: UltraProject
 subtitle: Scaling simple ideas.
 # google_analytics_tracking_id: UA-12450662-3
 permalink: /blog/:year/:month/:day/:title/
-baseurl: "/ultrtaproject_website/" # the subpath of your site, e.g. /blog/
+blog_baseurl: "/blog/" # the subpath of your site, e.g. /blog/
 # twitter_username: ArtsyOpenSource
 # github_username: Artsy
 
