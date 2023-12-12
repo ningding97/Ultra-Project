@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UltraProject</title>
+    <description></description>
+    <link>//</link>
+    <atom:link href="//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 12 Dec 2023 08:45:06 +0000</pubDate>
+    <lastBuildDate>Tue, 12 Dec 2023 08:45:06 +0000</lastBuildDate>
+    <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>Are you using the right Mongo geospatial query?</title>
+        <description>&lt;p&gt;We recently got a report from one of our galleries in the Los Angeles area that
+they weren’t showing up on our
+&lt;a href=&quot;https://www.artsy.net/shows/los-angeles-ca-usa&quot;&gt;Los Angeles exhibition listings&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I fielded the report and right away confirmed: when we asked our core API for
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/shows?near=&amp;lt;los angeles coordinates&amp;gt;&lt;/code&gt;, sure enough this gallery partner didn’t
+make the cut.&lt;/p&gt;
+
+&lt;p&gt;Turns out they are based in Santa Monica, a separate and neighboring
+municipality. They must not be within the 25km radius that we use by default for
+these sorts of queries.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Case closed&lt;/em&gt;. Or so I thought.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;After some back and forth with our partner I decided to investigate more
+thoroughly, this time using some tricks of the trade from
+&lt;a href=&quot;https://www.anandarooproy.com&quot;&gt;my other life&lt;/a&gt; outside of Artsy.&lt;/p&gt;
+
+&lt;h2 id=&quot;casting-a-wider-net&quot;&gt;Casting a wider net&lt;/h2&gt;
+
+&lt;p&gt;If there was something wrong with our 25km radius query, I wanted to start by
+casting a wider net and visualizing the results.&lt;/p&gt;
+
+&lt;p&gt;I consulted our Rails application code to find the query logic in question, and
+then issued the same query directly to MongoDB. Something like the following
+query (simplified for clarity):&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// a $geoWithin $center query&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;coordinates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;$geoWithin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;$center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;118.24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;34.05&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;111.32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the query above we are asking MongoDB to give us all events within a 25km
+radius around the point 34.05°N, 118.24°W which we have designated as a central
+point within Los Angeles. For our purposes in this post we can consider “events”
+≈ “exhibitions” ≈ “shows.”&lt;/p&gt;
+
+&lt;p&gt;We are not asking for the 25km radius directly, but rather converting it into an
+equivalent amount of geographic degrees by using a conversion factor of 1° ≈
+111.32 kilometers, a factor which is true at enough the equator.&lt;/p&gt;
+
+&lt;p&gt;I modified the above query to cast a 50km net in order to see if there were some
+edges cases that needed scrutiny. Taking the resulting JSON response, I fired up
+&lt;a href=&quot;https://www.placemark.io/&quot;&gt;Placemark&lt;/a&gt;, my favorite new tool for wrangling
+geospatial data.&lt;/p&gt;
+
+&lt;p&gt;(Incidentally I recommend reading Tom Macwright’s
+&lt;a href=&quot;https://macwright.com/2023/01/28/placemark.html&quot;&gt;recent reflection on creating Placemark&lt;/a&gt;
+as a bootstrapped indie developer.)&lt;/p&gt;
+
+&lt;figure class=&quot;illustration&quot;&gt;
+  &lt;img src=&quot;/images/2023-02-10-mongo-geospatial-queries/1.png&quot; alt=&quot;Screenshot of a visualization in Placemark showing Los Angeles area exhibitions within a 50km radius.&quot; /&gt;
+  &lt;figcaption&gt;All shows within a 50km radius&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;ball-of-confusion&quot;&gt;Ball of confusion&lt;/h2&gt;
+
+&lt;p&gt;One nice feature of Placemark is that it lets us place geodesic circles on the
+map, that is, circles that represent a constant radius around a point, as
+plotted on a globe.&lt;/p&gt;
+
+&lt;p&gt;When I placed a 25km radius circle on the map, something stood out immediately.&lt;/p&gt;
+
+&lt;figure class=&quot;illustration&quot;&gt;
+  &lt;img src=&quot;/images/2023-02-10-mongo-geospatial-queries/2.png&quot; alt=&quot;Screenshot of a visualization in Placemark showing Los Angeles area exhibitions within a 50km radius, with a 25km radius superimposed.&quot; /&gt;
+  &lt;figcaption&gt;25km radius superimposed. &lt;a style=&quot;padding-bottom: 1px; border-bottom: solid 1px lightgray&quot; href=&quot;https://en.wikipedia.org/wiki/Ball_of_Confusion_%28That%27s_What_the_World_Is_Today%29&quot;&gt;Ball of Confusion&lt;/a&gt;, that&apos;s what the world was that day.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The partner in question is highlighted in pink — and is clearly within the 25km
+radius. &lt;strong&gt;What gives?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;By spot-checking a few points on the map against our current geo query I found
+that edge cases near the top or bottom of the circle were likely to be evaluated
+correctly, while edges cases at the left and right were being incorrectly
+omitted, as our partner gallery was.&lt;/p&gt;
+
+&lt;p&gt;A fuller visualization of that finding would look like this:&lt;/p&gt;
+
+&lt;figure class=&quot;illustration&quot;&gt;
+  &lt;img src=&quot;/images/2023-02-10-mongo-geospatial-queries/3.png&quot; alt=&quot;Screenshot of a visualization in Placemark showing the results of a $geoWithin $center query&quot; /&gt;
+  &lt;figcaption&gt;Results of a &lt;code&gt;$geoWithin $center&lt;/code&gt; query around Los Angeles, evaluated against a grid of test points.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;A distinctly &lt;em&gt;non&lt;/em&gt;-circular circle — that rung a bell.&lt;/p&gt;
+
+&lt;h2 id=&quot;more-than-one-way-to-draw-a-circle-on-the-earth&quot;&gt;More than one way to draw a circle on the Earth&lt;/h2&gt;
+
+&lt;p&gt;It was at this point that I recalled the specific form of the geospatial query
+our code was performing, and consulted the
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/reference/operator/query/geoWithin/&quot;&gt;MongoDB docs for the $geoWithin query&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Turns out that you can invoke this as a radius query in one of two ways, by
+specifying
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/reference/operator/query/center/&quot;&gt;$center&lt;/a&gt;
+or
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/&quot;&gt;$centerSphere&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Per the
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/reference/operator/query/center/#behavior&quot;&gt;docs&lt;/a&gt;
+for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$center&lt;/code&gt;, this query…&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;calculates distances using flat (planar) geometry&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Let us pause for a moment to note that while only some maps are
+&lt;a href=&quot;https://press.uchicago.edu/ucp/books/book/chicago/H/bo27400568.html&quot;&gt;deceitful&lt;/a&gt;,
+&lt;em&gt;all&lt;/em&gt; maps are untruths. In the sense that they flatten three dimensions down to
+two, and inevitably distort the world in the process.&lt;/p&gt;
+
+&lt;p&gt;The surface of a three-dimensional globe cannot be flattened down to a
+two-dimensional plane without some stretching or tearing, any more than an
+orange peel can be. The mathematical algorithms for turning those three
+dimensions into two are what we know as map projections. (Ah, the good old days
+when “dimensionality reduction” meant &lt;em&gt;from three to two&lt;/em&gt;.)&lt;/p&gt;
+
+&lt;p&gt;If you do your distance calculations in such a flattened, projected coordinate
+system — as the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$geoWithin $center&lt;/code&gt; query does — then you are accepting
+whatever distortions are inherent to that projection.&lt;/p&gt;
+
+&lt;p&gt;That’s the situation we were in. We thought we were catching everything inside
+the green circle, but in fact we were only catching everything inside the red
+egg:&lt;/p&gt;
+
+&lt;figure class=&quot;illustration&quot;&gt;
+  &lt;img src=&quot;/images/2023-02-10-mongo-geospatial-queries/5.png&quot; alt=&quot;Screenshot of a visualization in Placemark showing the results of a $geoWithin $center query compared to the expected results&quot; /&gt;
+  &lt;figcaption&gt;Actual &lt;code&gt;$geoWithin $center&lt;/code&gt; results vs. expected results.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;And our unfortunate partner was &lt;em&gt;just&lt;/em&gt; outside the egg, thus being incorrectly
+omitted.&lt;/p&gt;
+
+&lt;h2 id=&quot;fixing-the-query&quot;&gt;Fixing the query&lt;/h2&gt;
+
+&lt;p&gt;Luckily the solution was simple.&lt;/p&gt;
+
+&lt;p&gt;As noted above MongoDB supports a second variant for radius queries using a
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$centerSphere&lt;/code&gt; operator instead of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$center&lt;/code&gt; that we were using.&lt;/p&gt;
+
+&lt;p&gt;Per the
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/&quot;&gt;docs&lt;/a&gt;
+for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$centerSphere&lt;/code&gt;, this version…&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;defines a circle for a geospatial query that uses spherical geometry&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In other words, this query effectively draws our circle on the three-dimensional
+globe rather than on the stretched and distorted two-dimensional map.&lt;/p&gt;
+
+&lt;p&gt;We just need to rewrite our query as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// a $geoWithin $centerSphere query&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;coordinates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;$geoWithin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// $center: [[-118.24, 34.05], 25 / 111.32],    /* BEFORE */&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;$centerSphere&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;118.24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;34.05&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;6378.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* AFTER */&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There is a new conversion factor in play here, this time denoting that the
+radius of the earth is approximately 6378.1 km. In this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$centerSphere&lt;/code&gt; flavor
+of the query we are working in unprojected
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Spherical_coordinate_system&quot;&gt;spherical coordinates&lt;/a&gt;,
+measured in &lt;a href=&quot;https://en.wikipedia.org/wiki/Radian&quot;&gt;radians&lt;/a&gt;. Thus we need to
+account for the size of the sphere that we are calculating upon.&lt;/p&gt;
+
+&lt;p&gt;We can re-run
+&lt;a href=&quot;https://gist.github.com/anandaroop/a1b794559615b2bbdea097678321c93f&quot;&gt;our test&lt;/a&gt;
+with this version of the query, and now we see that the results are finally in
+line with what we were expecting:&lt;/p&gt;
+
+&lt;figure class=&quot;illustration&quot;&gt;
+  &lt;img src=&quot;/images/2023-02-10-mongo-geospatial-queries/4.png&quot; alt=&quot;Screenshot of a visualization in Placemark showing the results of a $geoWithin $centerSphere query&quot; /&gt;
+  &lt;figcaption&gt;Results of a &lt;code&gt;$geoWithin $centerSphere&lt;/code&gt; query around Los Angeles, evaluated against a grid of test points.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Having updated our API to use this variant of the query, we solved the problem
+and returned our partner gallery to its rightful place in our listings, as shown
+by the pink highlight above.&lt;/p&gt;
+
+&lt;p&gt;That was the happy ending we were looking for.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-postscript-on-map-distortion&quot;&gt;A postscript on map distortion&lt;/h2&gt;
+
+&lt;p&gt;But if you’re curious to learn a little more about map distortion, let’s dig a
+bit deeper into the nature of the problem that we were encountering.&lt;/p&gt;
+
+&lt;p&gt;Returning to &lt;a href=&quot;https://www.placemark.io/&quot;&gt;Placemark&lt;/a&gt;’s ability to draw different
+kinds of circles on the map, let’s now place a &lt;em&gt;geographic&lt;/em&gt; circle on the map
+rather than a geodesic one. This one is computed in the simplest possible map
+projection — a geographic projection where we simply treat the longitude as the
+X coordinate and the latitude as the Y coordinate. (This projection goes by many
+names, such as “geographic”, “equirectangular”, “Plate Carrée” or even
+&lt;em&gt;“unprojected”&lt;/em&gt;, which is not quite accurate.)&lt;/p&gt;
+
+&lt;p&gt;This corresponds to what you get when you use MongoDB’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$geoWithin&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$center&lt;/code&gt;
+query on geospatial data:&lt;/p&gt;
+
+&lt;figure class=&quot;illustration&quot;&gt;
+  &lt;img src=&quot;/images/2023-02-10-mongo-geospatial-queries/6.gif&quot; alt=&quot;Animation showing the distortion a geographic circle encounters at various latitudes&quot; /&gt;
+  &lt;figcaption&gt;Animation showing the distortion a geographic circle encounters at various latitudes.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;As you can see, we get: a moderately oblong egg at the latitude of Los Angeles;
+a nice circle as we get close to the equator; and a very oblong egg as we
+approach the poles.&lt;/p&gt;
+
+&lt;p&gt;If you are wondering why you should trust my claims about the egginess of &lt;em&gt;this&lt;/em&gt;
+two-dimensional image after I just said that all such maps are lies — good
+question!&lt;/p&gt;
+
+&lt;p&gt;It just so happens that nearly all web-based interactive maps, including
+Placemark, use a variation of the Mercator projection, the one you might
+remember from schoolroom maps. Mercator is a so-called
+“&lt;a href=&quot;https://en.wikipedia.org/wiki/Conformal_map_projection&quot;&gt;conformal&lt;/a&gt;”
+projection, meaning that &lt;em&gt;its&lt;/em&gt; particular lie is to sacrifice area in favor of
+shape.&lt;/p&gt;
+
+&lt;p&gt;A shape drawn on a globe will be correctly maintained in a Mercator map, but the
+scale will vary across the map: true at the equator and very incorrect towards
+the poles. This is the reason for the common complaint that
+&lt;a href=&quot;https://www.nature.com/nature-index/news-blog/data-visualisation-animated-map-mercater-projection-true-size-countries&quot;&gt;Mercator maps show Greenland as about the same size as Africa&lt;/a&gt;,
+when in fact Africa is about 14 times larger.&lt;/p&gt;
+
+&lt;p&gt;The amount and nature of the distortion introduced by map projections is such an
+important topic that cartographers have long relied on a clever technique for
+communicating this distortion visually, known as
+“&lt;a href=&quot;https://en.wikipedia.org/wiki/Tissot%27s_indicatrix&quot;&gt;Tissot’s indicatrix&lt;/a&gt;.”&lt;/p&gt;
+
+&lt;p&gt;To give you a sense of the kind of distortion we encountered with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$center&lt;/code&gt;
+query, here is what Tissot’s indicatrix looks like for the geographic
+projection. This shows essentially the inverse of the animation above — what
+does a true circle plotted on the globe look like at various locations on this
+map projection?&lt;/p&gt;
+
+&lt;figure class=&quot;illustration&quot;&gt;
+  &lt;img src=&quot;/images/2023-02-10-mongo-geospatial-queries/7.png&quot; alt=&quot;Tissot&apos;s indicatrix for equirectangular projection&quot; /&gt;
+  &lt;figcaption&gt;Tissot&apos;s indicatrix for equirectangular projection. Credit: Justin Kunimune, &lt;a href=&quot;https://creativecommons.org/licenses/by-sa/4.0&quot;&gt;CC BY-SA 4.0&lt;/a&gt;, via Wikimedia Commons&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Now, imagine the inverse operation of this ⤴︎, drawing &lt;em&gt;true&lt;/em&gt; circles on this
+planar space, in order to get a sense of how distorted your query results on a
+globe would be.&lt;/p&gt;
+
+&lt;p&gt;Finally, here is Tissot’s indicatrix for the Mercator projection, demonstrating
+its ability to preserve shapes at the expense of sizes.&lt;/p&gt;
+
+&lt;figure class=&quot;illustration&quot;&gt;
+  &lt;img src=&quot;/images/2023-02-10-mongo-geospatial-queries/8.png&quot; alt=&quot;Tissot&apos;s indicatrix for Mercator projection&quot; /&gt;
+  &lt;figcaption&gt;Tissot&apos;s indicatrix for Mercator projection. Credit: Eric Gaba, &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/4.0/&quot;&gt;CC BY-SA 4.0&lt;/a&gt;, via Wikimedia Commons&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;An interesting recent development is that the web’s reliance on Mercator is
+changing, but only very slowly.
+&lt;a href=&quot;https://www.theverge.com/2018/8/5/17653122/google-maps-update-mercator-projection-earth-isnt-flat&quot;&gt;Google began to make this change&lt;/a&gt;
+a few years ago, and
+&lt;a href=&quot;https://www.mapbox.com/blog/adaptive-projections&quot;&gt;Mapbox has written about their approach&lt;/a&gt;
+as well.&lt;/p&gt;
+
+&lt;p&gt;Hopefully this digression into the display of geospatial data has been
+illuminating. There is much more to say on this topic, since geospatial is more
+or less one asterisk after another. For example, we haven’t mentioned that the
+Mercator projection above is incapable of depicting the north or south poles at
+all! Nor have we touched on MongoDB’s various geospatial
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/geospatial-queries/#geospatial-data&quot;&gt;data formats&lt;/a&gt;,
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/geospatial-queries/#geospatial-indexes&quot;&gt;indexes&lt;/a&gt;,
+or
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/reference/operator/query/near/&quot;&gt;the $near query&lt;/a&gt;
+and its spherical sibling
+&lt;a href=&quot;https://www.mongodb.com/docs/manual/reference/operator/query/nearSphere/&quot;&gt;the $nearSphere query&lt;/a&gt;,
+all worthy topics.&lt;/p&gt;
+
+&lt;p&gt;But we hope that understanding this crucial distinction between planar
+(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$center&lt;/code&gt;) and spherical (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$centerSphere&lt;/code&gt;) calculations will help you make the
+right choice when devising your own radius queries with MongoDB or other
+geospatial engines.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate>
+        <link>//blog/2023/02/10/mongo-geospatial-queries/</link>
+        <guid isPermaLink="true">//blog/2023/02/10/mongo-geospatial-queries/</guid>
+        
+        
+        <category>MongoDB</category>
+        
+        <category>best practices</category>
+        
+        <category>debugging</category>
+        
+        <category>geospatial</category>
+        
+        <category>gravity</category>
+        
+      </item>
+    
+  </channel>
+</rss>

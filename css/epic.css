@@ -1,0 +1,207 @@
+body {
+  margin: 0;
+  padding: 0; }
+
+body > div > div {
+  max-width: 1000px;
+  margin: 0 auto; }
+
+body > div > div > header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 48px; }
+  body > div > div > header ul li:first-child {
+    font-weight: bold; }
+
+body > div > div > section > header#page {
+  margin-top: 160px;
+  margin-bottom: 160px; }
+  body > div > div > section > header#page h1 {
+    font-size: 60px;
+    line-height: 70px;
+    font-weight: normal; }
+  body > div > div > section > header#page h3 {
+    font-size: 20px;
+    font-weight: normal; }
+  body > div > div > section > header#page time {
+    font-size: 20px;
+    padding-top: 5px;
+    font-weight: normal; }
+
+article.post {
+  font-size: 20px;
+  line-height: 32px;
+  max-width: 740px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px; }
+  @media screen and (max-width: 480px) {
+    article.post {
+      padding-left: 0;
+      padding-right: 0; } }
+  article.post figure.code {
+    float: none; }
+  article.post p code, article.post li code {
+    border: none;
+    font-size: 0.6em;
+    background: #f6f6f6; }
+  article.post p {
+    padding-bottom: 1.25em; }
+  article.post blockquote > p:last-child {
+    padding-bottom: 0; }
+  article.post p > img {
+    width: 100%;
+    text-align: center; }
+  article.post p > img.headline {
+    position: relative;
+    left: -60px;
+    right: -60px;
+    top: 0;
+    max-width: calc(100% + 60px); }
+  article.post p > img.callout {
+    width: 100%;
+    text-align: center; }
+  article.post h1 {
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 48px; }
+  article.post h2 {
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 58px; }
+  article.post ul {
+    padding-bottom: 1.25em; }
+    article.post ul li {
+      list-style-type: circle;
+      display: list-item; }
+  article.post > table, article.post > blockquote > table {
+    margin: 0 auto;
+    padding: 30px 0; }
+
+aside.related-articles {
+  display: none;
+  border-top: 1px lightgrey solid;
+  padding: 24px; }
+  aside.related-articles.loaded {
+    display: block; }
+  aside.related-articles h2 {
+    padding: 0.5em 0; }
+  aside.related-articles ul li {
+    display: list-item;
+    padding: 0.25em 0; }
+    aside.related-articles ul li a {
+      background-image: linear-gradient(to bottom, transparent 0%, #000000 1px, transparent 0%);
+      background-size: 1px 5px;
+      background-repeat: repeat-x;
+      background-position: bottom;
+      text-decoration: none; }
+      aside.related-articles ul li a:active {
+        text-decoration: none; }
+
+body > div > div .comment {
+  background-image: url(/images/epic/comment-header.svg);
+  background-repeat: no-repeat;
+  background-position: 60px 10px;
+  margin-bottom: 20px; }
+  body > div > div .comment .comment-header {
+    color: #999; }
+  body > div > div .comment .comment-username {
+    font-weight: bold; }
+  body > div > div .comment a.comment-date {
+    color: #999; }
+    body > div > div .comment a.comment-date:hover {
+      color: #444; }
+  body > div > div .comment .comment-body {
+    padding-left: 90px;
+    padding-top: 10px; }
+  body > div > div .comment .comment-reactions {
+    padding-left: 90px; }
+  body > div > div .comment img {
+    border-radius: 3px !important;
+    vertical-align: middle;
+    margin-right: 50px; }
+  body > div > div .comment p {
+    padding-bottom: 0.75em; }
+  body > div > div .comment p:last-child {
+    padding-bottom: 0em; }
+  body > div > div .comment .emoji {
+    margin-right: 5px;
+    vertical-align: bottom;
+    font-family: "Apple Color Emoji", "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol"; }
+  body > div > div .comment img.emoji {
+    vertical-align: middle; }
+  body > div > div .comment .emoji-wrapper {
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 1px lightgrey solid;
+    vertical-align: middle; }
+  body > div > div .comment .emoji-wrapper:last-child {
+    border: none; }
+
+body > div > div > footer {
+  border-top: 1px lightgrey solid;
+  padding-top: 30px; }
+  body > div > div > footer article {
+    display: flex; }
+    body > div > div > footer article section {
+      flex: 1;
+      border-left: 1px lightgrey solid;
+      padding-right: 24px;
+      padding-left: 24px; }
+      body > div > div > footer article section h4 {
+        margin-top: 0; }
+      body > div > div > footer article section p:last-child {
+        margin-bottom: 0; }
+    body > div > div > footer article section:first-child {
+      border-left: none; }
+
+.split-desktop-only {
+  display: flex;
+  flex-flow: row; }
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 20px; }
+
+  body > div > div > header {
+    padding-top: 0; }
+    body > div > div > header li {
+      font-size: 18px; }
+
+  body > div > div > section > header#page h1 {
+    font-size: 45px; } }
+@media screen and (max-width: 800px) {
+  body > div > div > section > header#page {
+    margin-top: 60px;
+    margin-bottom: 60px; }
+
+  body > div > div > footer article {
+    flex-direction: column; }
+    body > div > div > footer article section {
+      padding-top: 20px; }
+
+  .split-desktop-only {
+    flex-flow: column; } }
+.pre-code .gi, html .gist .gist-file .gist-syntax .gist-highlight pre .gi, .highlight code .gi {
+  background-color: #befed7 !important; }
+
+.pre-code .gd, html .gist .gist-file .gist-syntax .gist-highlight pre .gd, .highlight code .gd {
+  background-color: #ffd8d3 !important; }
+
+ol {
+  list-style-type: upper-roman; }
+  ol li {
+    display: list-item; }
+
+.desktop-only {
+  display: flex; }
+
+.mobile-only {
+  display: none; }
+
+@media only screen and (max-device-width: 667px) {
+  .desktop-only {
+    display: none !important; }
+
+  .mobile-only {
+    display: block !important; } }

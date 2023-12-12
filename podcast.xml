@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title></title>
+    
+    <atom:link href="//podcast.xml" rel="self" type="application/rss+xml" />
+    <itunes:new-feed-url>//podcast.xml</itunes:new-feed-url>
+    
+    <link>/</link>
+    <description></description>
+    
+    <lastBuildDate>Tue, 12 Dec 2023 08:45:06 +0000</lastBuildDate>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    
+    <language></language>
+    <copyright></copyright>
+    
+    <itunes:subtitle></itunes:subtitle>
+    <itunes:summary></itunes:summary>
+    <itunes:keywords></itunes:keywords>
+    
+    <category>Technology</category>
+    <itunes:category text="Technology"/>
+
+    <itunes:author></itunes:author>
+    <itunes:owner>
+      <itunes:name></itunes:name>
+      <itunes:email></itunes:email>
+    </itunes:owner>
+    <itunes:block>no</itunes:block>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="" />
+
+    
+  </channel>
+</rss>
