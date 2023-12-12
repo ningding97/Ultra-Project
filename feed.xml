@@ -5,13 +5,13 @@
     <description></description>
     <link>https://ningding97.github.io/ultrtaproject_website//blog//</link>
     <atom:link href="https://ningding97.github.io/ultrtaproject_website//blog//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 12 Dec 2023 09:26:59 +0000</pubDate>
-    <lastBuildDate>Tue, 12 Dec 2023 09:26:59 +0000</lastBuildDate>
+    <pubDate>Tue, 12 Dec 2023 09:30:13 +0000</pubDate>
+    <lastBuildDate>Tue, 12 Dec 2023 09:30:13 +0000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
-    
+    <!-- 
       <item>
         <title>Are you using the right Mongo geospatial query?</title>
-        <!-- <description>&lt;p&gt;We recently got a report from one of our galleries in the Los Angeles area that
+        <description>&lt;p&gt;We recently got a report from one of our galleries in the Los Angeles area that
 they weren’t showing up on our
 &lt;a href=&quot;https://www.artsy.net/shows/los-angeles-ca-usa&quot;&gt;Los Angeles exhibition listings&lt;/a&gt;.&lt;/p&gt;
 
@@ -95,7 +95,7 @@ query on geospatial data:&lt;/p&gt;
 (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$center&lt;/code&gt;) and spherical (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$centerSphere&lt;/code&gt;) calculations will help you make the
 right choice when devising your own radius queries with MongoDB or other
 geospatial engines.&lt;/p&gt;
-</description> -->
+</description>
         <pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate>
         <link>https://ningding97.github.io/ultrtaproject_website//blog//blog/2023/02/10/mongo-geospatial-queries/</link>
         <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog//blog/2023/02/10/mongo-geospatial-queries/</guid>
@@ -106,6 +106,109 @@ geospatial engines.&lt;/p&gt;
         <category>geospatial</category>
         
       </item>
+     -->
+
     
+      <item>
+        <title>Enhancing Chat Language Models by Scaling High-quality Instructional Conversations (EMNLP 2023)</title>
+        <description>We introduce UltraChat, a large-scale dataset designed for training AI assistants, featuring 1.5 million high-quality, diverse multi-turn dialogues without human queries. Leveraging UltraChat, we fine-tuned a LLaMA model to create UltraLM, a powerful conversational model.</description>
+        <pubDate>Apr 3rd, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>Boosting Language Models with High-quality Feedback (ICLR 2024)</title>
+        <description>We introduce UltraFeedback, a large-scale, diversified dataset enhancing Reinforcement Learning from Human Feedback (RLHF) in language models. Addressing the scarcity of diverse preference data, it combines various instructions and models for comparative data. We trained models like UltraRM, UltraLM-13B-PPO, and UltraCM using it.</description>
+        <pubDate>Sep 7th, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>UltraChat-1.5M</title>
+        <description>The React component library shared across our web applications, letting us share expertise and experience across engineering teams. Built on top of our project Palette.</description>
+        <pubDate>Apr 7th, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>UltraFeedback-64k</title>
+        <description>The React component library shared across our web applications, letting us share expertise and experience across engineering teams. Built on top of our project Palette.</description>
+        <pubDate>Sep 7th, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>UltraEval</title>
+        <description>UltraEval is an open-source framework for evaluating the capabilities of foundation models, providing a suite of lightweight, easy-to-use evaluation systems that support the performance assessment of mainstream LLMs.</description>
+        <pubDate>Nov 24th, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>UltraLM-13B</title>
+        <description>First version of UltraLM, finetuned with UltraChat dataset on Llama-13B. Ranked 1 on AlpacaEval on Jun 28.</description>
+        <pubDate>Jun 3rd, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>UltraLM-13B-v2.0</title>
+        <description>Second version of UltraLM, finetuned with UltraChat dataset on Llama2-13B and aligned with RL by UltraFeedback. Ranked 1 on AlpacaEval on Nov 28.</description>
+        <pubDate>Sep 18th, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>UltraLM-65B</title>
+        <description>Finetuned with UltraChat dataset on Llama-65B.</description>
+        <pubDate>Aug 3rd, 2014</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>Falcon-180b-Chat</title>
+        <description>Falcon-180B-Chat is a 180B parameters causal decoder-only model built by TII based on Falcon-180B and finetuned on a mixture of Ultrachat, Platypus and Airoboros.</description>
+        <pubDate>Sep 4th, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+      <item>
+        <title>Zephyr-7B</title>
+        <description>Zephyr is a series of language models that are trained to act as helpful assistants. Zephyr-7B-β is the second model in the series, and is a fine-tuned version of mistralai/Mistral-7B-v0.1 that was trained on on a mix of publicly available, synthetic datasets using Direct Preference Optimization (DPO).</description>
+        <pubDate>Nov 22nd, 2023</pubDate>
+        <!-- <link>https://ningding97.github.io/ultrtaproject_website//blog/</link> -->
+        <!-- <guid isPermaLink="true">https://ningding97.github.io/ultrtaproject_website//blog/</guid> -->
+        <!--  -->
+        <!--  -->
+      </item>
+    
+
   </channel>
 </rss>
