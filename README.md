@@ -1,31 +1,13 @@
-[![Build Status](https://circleci.com/gh/artsy/artsy.github.io.svg?style=svg)](https://circleci.com/gh/artsy/artsy.github.io)
-
-The Artsy OSS page and the blog runs on top of a default jekyll install. If you
-would like an overview of jekyll, their [website rocks](http://jekyllrb.com/).
 
 ## Setup
 
 ```
-git clone git@github.com:artsy/artsy.github.io.git
-cd artsy.github.io
+git clone https://github.com/ningding97/ultrtaproject_website.git
+cd ultrtaproject_website
 bundle
 bundle exec rake bootstrap
 bundle exec rake build
 ```
-
-### Common issues ⚠️
-
-<details><summary>Issues installing `therubyracer` and/or `v8` dependencies</summary>
-Some combination of the following might help resolve issues with installing these dependencies:
-
-- make sure you have a ruby version that works (e.g. 2.7.5)
-- Installing `v8` via homebrew: `brew install v8`
-- Installing the `libv8` gem using a specific version and v8 flag:
-  `gem install libv8 -v '3.16.14.19' -- --with-system-v8`
-- Assigning configuration options, as in
-  [this comment](https://gist.github.com/fernandoaleman/868b64cd60ab2d51ab24e7bf384da1ca#gistcomment-3114668).
-
-</details>
 
 ## License
 
@@ -44,15 +26,6 @@ to generate. No one wants that when working on the site.
 
 Categories are generated when the ENV var `PRODUCTION` = `"YES"`.
 
-## Deploying
-
-- Circle automatically deploys to GitHub Pages when new commits are pushed to
-  the `source` branch.
-- If you need to trigger a deploy locally, the `rake deploy` command is
-  available.
-- See the `Rakefile` for details on how builds/deploys are done.
-- Note that the `main` branch does not build on Circle, due to all deploy
-  commits being prefixed with `[skip ci]`.
 
 ## Adding an Author
 
@@ -174,35 +147,7 @@ After that it is just:
 foreman run bundle exec rake related_articles
 ```
 
-## About Artsy
-
-<a href="https://www.artsy.net/">
-  <img align="left" src="https://avatars2.githubusercontent.com/u/546231?s=200&v=4"/>
-</a>
-
-This project is the work of engineers at [Artsy][footer_website], the world's
-leading and largest online art marketplace and platform for discovering art. One
-of our core [Engineering Principles][footer_principles] is being [Open Source by
-Default][footer_open] which means we strive to share as many details of our work
-as possible.
-
-You can learn more about this work from [our blog][footer_blog] and by following
-[@ArtsyOpenSource][footer_twitter] or explore our public data by checking out
-[our API][footer_api]. If you're interested in a career at Artsy, read through
-our [job postings][footer_jobs]!
-
-[footer_website]: https://www.artsy.net/
-[footer_principles]:
-  https://github.com/artsy/README/blob/master/culture/engineering-principles.md
-[footer_open]:
-  https://github.com/artsy/README/blob/master/culture/engineering-principles.md#open-source-by-default
-[footer_blog]: https://artsy.github.io/
-[footer_twitter]: https://twitter.com/ArtsyOpenSource
-[footer_api]: https://developers.artsy.net/
-[footer_jobs]: https://www.artsy.net/jobs
-
-
-## UltraProject Adaption
+## UltraProject
 
 We have made some new features based on Artsy website.
 
@@ -286,3 +231,31 @@ oss_projects:
     created: Apr 3rd, 2023
 ```
 
+
+
+## About Artsy
+
+<a href="https://www.artsy.net/">
+  <img align="left" src="https://avatars2.githubusercontent.com/u/546231?s=200&v=4"/>
+</a>
+
+This project is the work of engineers at [Artsy][footer_website], the world's
+leading and largest online art marketplace and platform for discovering art. One
+of our core [Engineering Principles][footer_principles] is being [Open Source by
+Default][footer_open] which means we strive to share as many details of our work
+as possible.
+
+You can learn more about this work from [our blog][footer_blog] and by following
+[@ArtsyOpenSource][footer_twitter] or explore our public data by checking out
+[our API][footer_api]. If you're interested in a career at Artsy, read through
+our [job postings][footer_jobs]!
+
+[footer_website]: https://www.artsy.net/
+[footer_principles]:
+  https://github.com/artsy/README/blob/master/culture/engineering-principles.md
+[footer_open]:
+  https://github.com/artsy/README/blob/master/culture/engineering-principles.md#open-source-by-default
+[footer_blog]: https://artsy.github.io/
+[footer_twitter]: https://twitter.com/ArtsyOpenSource
+[footer_api]: https://developers.artsy.net/
+[footer_jobs]: https://www.artsy.net/jobs
