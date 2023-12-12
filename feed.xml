@@ -3,10 +3,10 @@
   <channel>
     <title>UltraProject</title>
     <description></description>
-    <link>//</link>
-    <atom:link href="//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 12 Dec 2023 08:45:06 +0000</pubDate>
-    <lastBuildDate>Tue, 12 Dec 2023 08:45:06 +0000</lastBuildDate>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 12 Dec 2023 08:55:43 +0000</pubDate>
+    <lastBuildDate>Tue, 12 Dec 2023 08:55:43 +0000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -302,8 +302,8 @@ right choice when devising your own radius queries with MongoDB or other
 geospatial engines.&lt;/p&gt;
 </description>
         <pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate>
-        <link>//blog/2023/02/10/mongo-geospatial-queries/</link>
-        <guid isPermaLink="true">//blog/2023/02/10/mongo-geospatial-queries/</guid>
+        <link>/blog/2023/02/10/mongo-geospatial-queries/</link>
+        <guid isPermaLink="true">/blog/2023/02/10/mongo-geospatial-queries/</guid>
         
         
         <category>MongoDB</category>

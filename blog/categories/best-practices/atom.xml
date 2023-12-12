@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: best practices | UltraProject]]></title>
-  <link href="//blog/categories/best-practices/atom.xml" rel="self"/>
-  <link href="//"/>
-  <updated>2023-12-12T08:45:06+00:00</updated>
-  <id>//</id>
+  <link href="/blog/categories/best-practices/atom.xml" rel="self"/>
+  <link href="/"/>
+  <updated>2023-12-12T08:55:43+00:00</updated>
+  <id>/</id>
   <author>
     <name><![CDATA[]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Are you using the right Mongo geospatial query?]]></title>
-    <link href="//blog/2023/02/10/mongo-geospatial-queries/"/>
+    <link href="/blog/2023/02/10/mongo-geospatial-queries/"/>
     <updated>2023-02-10T00:00:00+00:00</updated>
-    <id>//blog/2023/02/10/mongo-geospatial-queries</id>
+    <id>/blog/2023/02/10/mongo-geospatial-queries</id>
     <content type="html"><![CDATA[<p>We recently got a report from one of our galleries in the Los Angeles area that
 they weren’t showing up on our
 <a href="https://www.artsy.net/shows/los-angeles-ca-usa">Los Angeles exhibition listings</a>.</p>
