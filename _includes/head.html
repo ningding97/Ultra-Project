@@ -30,22 +30,22 @@
   <link rel="alternate" type="application/rss+xml" title="Artsy Engineering Blog" href="/feed">
   <link rel="alternate" type="application/atom+xml" title="Podcast Feed" href="/podcast.xml" />
 
-  <link href="{{'/favicon.ico' | relative_url}}" rel="icon">
-  <link href="{{'/css/screen.css' | relative_url}}" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="{{ site.baseurl }}/favicon.ico'" rel="icon">
+  <link href="{{ site.baseurl }}/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
-  <script src="{{'/javascripts/jquery-1.11.3.min.js' | relative_url}}"> </script>
-  <script src="{{'/javascripts/gradient-fade.js' | relative_url}}"></script>
-  <script src="{{'/javascripts/noframework.waypoints.min.js' | relative_url}}"></script>
-  <script src="{{'/javascripts/sticky.min.js' | relative_url}}"></script>
-  <script src="{{'/javascripts/custom-element.min.js' | relative_url}}"></script>
-  <script src="{{'/javascripts/g-emoji-element.js' | relative_url}}"></script>
-  <script src="{{'/javascripts/related-articles.js' | relative_url}} "></script>
+  <script src="{{ site.baseurl }}/javascripts/jquery-1.11.3.min.js"> </script>
+  <script src="{{ site.baseurl }}/javascripts/gradient-fade.js"></script>
+  <script src="{{ site.baseurl }}/javascripts/noframework.waypoints.min.js"></script>
+  <script src="{{ site.baseurl }}/javascripts/sticky.min.js"></script>
+  <script src="{{ site.baseurl }}/javascripts/custom-element.min.js"></script>
+  <script src="{{ site.baseurl }}/javascripts/g-emoji-element.js"></script>
+  <script src="{{ site.baseurl }}/javascripts/related-articles.js "></script>
 
   {% if page.opensource == true %}
-  <script src="{{'/javascripts/modernizr-2.0.js' | relative_url}}"></script>
-  <script src="{{'/javascripts/jquery.scrollTo.min.js' | relative_url}}"></script>
+  <script src="{{ site.baseurl }}/javascripts/modernizr-2.0.js"></script>
+  <script src="{{ site.baseurl }}/javascripts/jquery.scrollTo.min.js"></script>
   {% endif %}
 
-  <link href="{{'/site.subscribe_rss' | relative_url}}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+  <link href="{{ site.baseurl }}/site.subscribe_rss" rel="alternate" title="{{site.title}}" type="application/atom+xml">
   <!-- {% include google_analytics.html %} -->
 </head>

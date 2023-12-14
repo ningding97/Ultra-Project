@@ -51,7 +51,7 @@ as a bootstrapped indie developer.)
 
 <figure class="illustration">
   <img
-    src="/images/2023-02-10-mongo-geospatial-queries/1.png"
+    src="{{ site.baseurl }}/images/2023-02-10-mongo-geospatial-queries/1.png"
     alt="Screenshot of a visualization in Placemark showing Los Angeles area exhibitions within a 50km radius."
   />
   <figcaption>All shows within a 50km radius</figcaption>
@@ -88,7 +88,7 @@ query on geospatial data:
 
 <figure class="illustration">
   <img
-    src="/images/2023-02-10-mongo-geospatial-queries/7.png"
+    src="{{ site.baseurl }}/images/2023-02-10-mongo-geospatial-queries/7.png"
     alt="Tissot's indicatrix for equirectangular projection"
   />
   <figcaption>Tissot's indicatrix for equirectangular projection. Credit: Justin Kunimune, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</figcaption>

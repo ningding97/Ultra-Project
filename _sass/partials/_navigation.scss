@@ -69,7 +69,7 @@ body > nav {
     }
   }
 }
-@mixin mask-subscription-nav($feed: '/images/rss.png'){
+@mixin mask-subscription-nav($feed: '{{ site.baseurl }}/images/rss.png'){
   position: relative; top: 0px;
   text-indent: -999999em;
   background-color: $nav-border-right;

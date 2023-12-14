@@ -11,7 +11,7 @@ footer: false
     <p>We covered a lot of topics in the last few years, here's all of the tags we've applied to our posts.</p>
     <ul>
     {% for category in page.categories %}
-      <li><a title="{{ category.count }} posts on {{ category.name }}" href="/blog/categories/{{ category.dir }}">{{ category.name }}</a></li>
+      <li><a title="{{ category.count }} posts on {{ category.name }}" href="{{'/blog' | relative_url}}categories/{{ category.dir }}">{{ category.name }}</a></li>
     {% endfor %}
     </ul>
   </article>

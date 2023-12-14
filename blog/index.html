@@ -13,8 +13,8 @@ title: Blog
   {% endfor %}
 
   <div class="pagination">
-    <a href="/blog/archives">Blog Archives</a>
-    <a href="/blog/categories">Categories</a>
+    <a href="{{'/blog' | relative_url}}/archives">Blog Archives</a>
+    <a href="{{'/blog' | relative_url}}/categories">Categories</a>
 
     {% if paginator.previous_page %}
       <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>

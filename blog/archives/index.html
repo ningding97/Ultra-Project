@@ -15,7 +15,7 @@ exclude_from_search: true
 
   <article>
     <div class="content-container">
-      <a href="{{ root_url }}{{ post.url }}">
+      <a href="{{ site.baseurl }}{{ post.url }}">
         <b>{{post.title}}</b> -
         {% assign author_key = post.author %}
         {% for key in author_key %}
