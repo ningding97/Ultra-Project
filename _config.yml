@@ -93,6 +93,7 @@ oss_projects:
     category: dataset
     github: https://github.com/OpenBMB/UltraFeedback
     arxiv: https://arxiv.org/abs/2310.01377
+    huggingface: https://huggingface.co/datasets/openbmb/UltraFeedback
     created: Sep 7th, 2023
 
   - title: UltraEval
