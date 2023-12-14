@@ -6,7 +6,7 @@ permalink: /blog/:year/:month/:day/:title/
 blog_baseurl: "/blog/" # the subpath of your site, e.g. /blog/
 # twitter_username: ArtsyOpenSource
 # github_username: Artsy
-baseurl: "Ultra-Project"
+baseurl: "/Ultra-Project"
 
 subscribe_rss: /feed.xml
 
@@ -80,6 +80,7 @@ oss_projects:
     category: dataset
     github: https://github.com/thunlp/UltraChat
     arxiv: https://arxiv.org/abs/2305.14233
+    huggingface: https://huggingface.co/datasets/stingning/ultrachat
     created: Apr 3rd, 2023
 
   - title: UltraFeedback

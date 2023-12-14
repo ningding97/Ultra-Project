@@ -20,6 +20,15 @@
   color: #907890; /* 灰紫色的颜色代码 */
 }
 
+.icon-container {
+  display: inline-block; /* 或者使用 flex, grid 等布局方式 */
+  padding: 5px; /* 边框与图标之间的距离 */
+  // background-color: white; /* 边框填充颜色 */
+  // border-radius: 20%; /* 圆润边框 */
+  margin: 5px; /* 边框之间的距离 */
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 可选的阴影效果 */
+  text-decoration: none; /* 移除下划线 */
+}
 
 $highlight-color: #50157d;
 $text-color: #636;
@@ -229,7 +238,7 @@ blockquote {
 }
 
 .sticky-wrapper {
-  min-height: 221px !important;
+  min-height: 100px !important;
 }
 
 header#banner {
@@ -676,7 +685,7 @@ article .article-container-single {
 
   #lead{
     width: 81%;
-    margin-bottom: 300px;
+    margin-bottom: 50px;
   }
 
   svg {
@@ -684,7 +693,7 @@ article .article-container-single {
   }
 
   .open-source-category-header{
-    margin-top: 350px;
+    margin-top: 50px;
     border-bottom: 1px solid $artsy-text;
 
     .open-source-category-header-title{

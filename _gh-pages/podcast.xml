@@ -11,13 +11,13 @@
   <channel>
     <title></title>
     
-    <atom:link href="//podcast.xml" rel="self" type="application/rss+xml" />
-    <itunes:new-feed-url>//podcast.xml</itunes:new-feed-url>
+    <atom:link href="https://ningding97.github.io/ultrtaproject_website//podcast.xml" rel="self" type="application/rss+xml" />
+    <itunes:new-feed-url>https://ningding97.github.io/ultrtaproject_website//podcast.xml</itunes:new-feed-url>
     
-    <link>/</link>
+    <link>https://ningding97.github.io/ultrtaproject_website/</link>
     <description></description>
     
-    <lastBuildDate>Tue, 12 Dec 2023 15:04:51 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 Dec 2023 15:54:41 +0800</lastBuildDate>
     <sy:updatePeriod>hourly</sy:updatePeriod>
     <sy:updateFrequency>1</sy:updateFrequency>
     
