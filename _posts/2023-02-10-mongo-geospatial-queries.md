@@ -10,8 +10,6 @@ We recently got a report from one of our galleries in the Los Angeles area that
 they weren't showing up on our
 [Los Angeles exhibition listings](https://www.artsy.net/shows/los-angeles-ca-usa).
 
-I fielded the report and right away confirmed: when we asked our core API for
-`/shows?near=<los angeles coordinates>`, sure enough this gallery partner didn't
 make the cut.
 
 _Case closed_. Or so I thought.
@@ -27,7 +25,7 @@ thoroughly, this time using some tricks of the trade from
 If there was something wrong with our 25km radius query, I wanted to start by
 casting a wider net and visualizing the results.
 
-```js
+<!-- ```js
 // a $geoWithin $center query
 
 db.events.find({
@@ -37,7 +35,7 @@ db.events.find({
     },
   },
 })
-```
+``` -->
 
 
 I modified the above query to cast a 50km net in order to see if there were some
@@ -86,14 +84,14 @@ two, and inevitably distort the world in the process.
 This corresponds to what you get when you use MongoDB's `$geoWithin` `$center`
 query on geospatial data:
 
-<figure class="illustration">
+<!-- <figure class="illustration">
   <img
     src="{{ site.baseurl }}/images/2023-02-10-mongo-geospatial-queries/7.png"
     alt="Tissot's indicatrix for equirectangular projection"
   />
   <figcaption>Tissot's indicatrix for equirectangular projection. Credit: Justin Kunimune, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</figcaption>
 </figure>
-
+ -->
 
 But we hope that understanding this crucial distinction between planar
 (`$center`) and spherical (`$centerSphere`) calculations will help you make the
