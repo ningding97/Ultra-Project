@@ -6,7 +6,7 @@ permalink: /blog/:year/:month/:day/:title/
 blog_baseurl: "/blog/" # the subpath of your site, e.g. /blog/
 # twitter_username: ArtsyOpenSource
 # github_username: Artsy
-baseurl: "/ultrtaproject_website"
+baseurl: ""
 
 subscribe_rss: /feed.xml
 
