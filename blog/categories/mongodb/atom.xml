@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB | UltraProject]]></title>
   <link href="https://ningding97.github.io/ultrtaproject_website//blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="https://ningding97.github.io/ultrtaproject_website//"/>
-  <updated>2023-12-14T09:25:55+00:00</updated>
+  <updated>2023-12-14T09:31:26+00:00</updated>
   <id>https://ningding97.github.io/ultrtaproject_website//</id>
   <author>
     <name><![CDATA[]]></name>
@@ -22,9 +22,7 @@
 they weren’t showing up on our
 <a href="https://www.artsy.net/shows/los-angeles-ca-usa">Los Angeles exhibition listings</a>.</p>
 
-<p>I fielded the report and right away confirmed: when we asked our core API for
-<code class="language-plaintext highlighter-rouge">/shows?near=&lt;los angeles coordinates&gt;</code>, sure enough this gallery partner didn’t
-make the cut.</p>
+<p>make the cut.</p>
 
 <p><em>Case closed</em>. Or so I thought.</p>
 
@@ -39,16 +37,17 @@ thoroughly, this time using some tricks of the trade from
 <p>If there was something wrong with our 25km radius query, I wanted to start by
 casting a wider net and visualizing the results.</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// a $geoWithin $center query</span>
+<!-- ```js
+// a $geoWithin $center query
 
-<span class="nx">db</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span>
-  <span class="na">coordinates</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">$geoWithin</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">$center</span><span class="p">:</span> <span class="p">[[</span><span class="o">-</span><span class="mf">118.24</span><span class="p">,</span> <span class="mf">34.05</span><span class="p">],</span> <span class="mi">25</span> <span class="o">/</span> <span class="mf">111.32</span><span class="p">],</span>
-    <span class="p">},</span>
-  <span class="p">},</span>
-<span class="p">})</span>
-</code></pre></div></div>
+db.events.find({
+  coordinates: {
+    $geoWithin: {
+      $center: [[-118.24, 34.05], 25 / 111.32],
+    },
+  },
+})
+``` -->
 
 <p>I modified the above query to cast a 50km net in order to see if there were some
 edges cases that needed scrutiny. Taking the resulting JSON response, I fired up
@@ -93,10 +92,14 @@ two, and inevitably distort the world in the process.</p>
 <p>This corresponds to what you get when you use MongoDB’s <code class="language-plaintext highlighter-rouge">$geoWithin</code> <code class="language-plaintext highlighter-rouge">$center</code>
 query on geospatial data:</p>
 
-<figure class="illustration">
-  <img src="/Ultra-Project/images/2023-02-10-mongo-geospatial-queries/7.png" alt="Tissot's indicatrix for equirectangular projection" />
+<!-- <figure class="illustration">
+  <img
+    src="/Ultra-Project/images/2023-02-10-mongo-geospatial-queries/7.png"
+    alt="Tissot's indicatrix for equirectangular projection"
+  />
   <figcaption>Tissot's indicatrix for equirectangular projection. Credit: Justin Kunimune, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</figcaption>
 </figure>
+ -->
 
 <p>But we hope that understanding this crucial distinction between planar
 (<code class="language-plaintext highlighter-rouge">$center</code>) and spherical (<code class="language-plaintext highlighter-rouge">$centerSphere</code>) calculations will help you make the
