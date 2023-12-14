@@ -25,27 +25,27 @@
   <meta property="og:image" content="http://artsy.github.io/images/artsy_oss_image.png" />
   <meta property="og:image:type" content="image/png" />
 
-  {% capture canonical %}{% if page.canonical %}{{ page.canonical }}{% else %}{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}{% endif %}{% endcapture %}
+  {% capture canonical %}{% if page.canonical %}{{ page.canonical }}{% else %}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}{% endif %}{% endcapture %}
   <link rel="canonical" href="{{ canonical }}">
   <link rel="alternate" type="application/rss+xml" title="Artsy Engineering Blog" href="/feed">
   <link rel="alternate" type="application/atom+xml" title="Podcast Feed" href="/podcast.xml" />
 
-  <link href="{{ site.url }}/favicon.ico" rel="icon">
-  <link href="{{ site.url }}/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
-  <script src="{{ site.url }}/javascripts/jquery-1.11.3.min.js"> </script>
-  <script src="{{ site.url }}/javascripts/gradient-fade.js"></script>
-  <script src="{{ site.url }}/javascripts/noframework.waypoints.min.js"></script>
-  <script src="{{ site.url }}/javascripts/sticky.min.js"></script>
-  <script src="{{ site.url }}/javascripts/custom-element.min.js"></script>
-  <script src="{{ site.url }}/javascripts/g-emoji-element.js"></script>
-  <script src="{{ site.url }}/javascripts/related-articles.js"></script>
+  <script src="/javascripts/jquery-1.11.3.min.js"> </script>
+  <script src="/javascripts/gradient-fade.js"></script>
+  <script src="/javascripts/noframework.waypoints.min.js"></script>
+  <script src="/javascripts/sticky.min.js"></script>
+  <script src="/javascripts/custom-element.min.js"></script>
+  <script src="/javascripts/g-emoji-element.js"></script>
+  <script src="/javascripts/related-articles.js"></script>
 
   {% if page.opensource == true %}
-  <script src="{{ site.url }}/javascripts/modernizr-2.0.js"></script>
-  <script src="{{ site.url }}/javascripts/jquery.scrollTo.min.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/jquery.scrollTo.min.js"></script>
   {% endif %}
 
-  <link href="{{ site.url }}{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+  <link href="/{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
   <!-- {% include google_analytics.html %} -->
 </head>
