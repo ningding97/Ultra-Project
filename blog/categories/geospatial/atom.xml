@@ -4,7 +4,7 @@
   <title><![CDATA[Category: geospatial | UltraProject]]></title>
   <link href="https://ningding97.github.io/ultrtaproject_website//blog/categories/geospatial/atom.xml" rel="self"/>
   <link href="https://ningding97.github.io/ultrtaproject_website//"/>
-  <updated>2023-12-14T08:57:04+00:00</updated>
+  <updated>2023-12-14T09:25:55+00:00</updated>
   <id>https://ningding97.github.io/ultrtaproject_website//</id>
   <author>
     <name><![CDATA[]]></name>
@@ -15,7 +15,7 @@
   
   <entry>
     <title type="html"><![CDATA[Are you using the right Mongo geospatial query?]]></title>
-    <link href="https://ningding97.github.io/ultrtaproject_website//blog/2023/02/10/mongo-geospatial-queries/"/>
+    <link href="https://ningding97.github.io/ultrtaproject_website//Ultra-Project/blog/2023/02/10/mongo-geospatial-queries/"/>
     <updated>2023-02-10T00:00:00+00:00</updated>
     <id>https://ningding97.github.io/ultrtaproject_website//blog/2023/02/10/mongo-geospatial-queries</id>
     <content type="html"><![CDATA[<p>We recently got a report from one of our galleries in the Los Angeles area that
@@ -60,7 +60,7 @@ geospatial data.</p>
 as a bootstrapped indie developer.)</p>
 
 <figure class="illustration">
-  <img src="/images/2023-02-10-mongo-geospatial-queries/1.png" alt="Screenshot of a visualization in Placemark showing Los Angeles area exhibitions within a 50km radius." />
+  <img src="/Ultra-Project/images/2023-02-10-mongo-geospatial-queries/1.png" alt="Screenshot of a visualization in Placemark showing Los Angeles area exhibitions within a 50km radius." />
   <figcaption>All shows within a 50km radius</figcaption>
 </figure>
 
@@ -94,7 +94,7 @@ two, and inevitably distort the world in the process.</p>
 query on geospatial data:</p>
 
 <figure class="illustration">
-  <img src="/images/2023-02-10-mongo-geospatial-queries/7.png" alt="Tissot's indicatrix for equirectangular projection" />
+  <img src="/Ultra-Project/images/2023-02-10-mongo-geospatial-queries/7.png" alt="Tissot's indicatrix for equirectangular projection" />
   <figcaption>Tissot's indicatrix for equirectangular projection. Credit: Justin Kunimune, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</figcaption>
 </figure>
 

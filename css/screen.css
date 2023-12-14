@@ -11,7 +11,7 @@
     text-align: right;
     font-size: 13px;
     line-height: 1.45em;
-    background: #073642 url("/images/noise.png") top left !important;
+    background: #073642 url("{{ site.baseurl }}/images/noise.png") top left !important;
     border-right: 1px solid #00232c !important;
     -webkit-box-shadow: #083e4b -1px 0 inset;
     -moz-box-shadow: #083e4b -1px 0 inset;
@@ -48,7 +48,7 @@ html .gist .gist-file {
     border: 1px solid #083e4b !important;
     color: #586e75;
     font-size: .7em !important;
-    background: #073642 url("/images/noise.png") top left;
+    background: #073642 url("{{ site.baseurl }}/images/noise.png") top left;
     line-height: 1.5em; }
     html .gist .gist-file .gist-meta a {
       color: #76888b !important;
@@ -69,7 +69,7 @@ html .gist .gist-file {
       top: .4em; }
 
 pre {
-  background: #002b36 url("/images/noise.png") top left;
+  background: #002b36 url("{{ site.baseurl }}/images/noise.png") top left;
   border-radius: 0.4em;
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
   border: 1px solid #05232b;
@@ -107,7 +107,7 @@ p pre code, li pre code {
   display: block;
   padding: .8em !important;
   overflow-x: auto;
-  background: #002b36 url("/images/noise.png") top left !important;
+  background: #002b36 url("{{ site.baseurl }}/images/noise.png") top left !important;
   color: #93a1a1 !important;
   /* Comment */
   /* Comment.Multiline */
@@ -340,7 +340,7 @@ figure.code {
   font-weight: normal;
   margin-bottom: 0;
   font-family: "Helvetica Neue", Arial, "Lucida Grande", "Lucida Sans Unicode", Lucida, sans-serif;
-  background: #aaaaaa url("/images/code_bg.png") top repeat-x;
+  background: #aaaaaa url("{{ site.baseurl }}/images/code_bg.png") top repeat-x;
   border: 1px solid #565656;
   border-top-color: #cbcbcb;
   border-left-color: #a5a5a5;

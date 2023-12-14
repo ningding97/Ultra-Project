@@ -99,7 +99,7 @@ aside.related-articles {
         text-decoration: none; }
 
 body > div > div .comment {
-  background-image: url(/images/epic/comment-header.svg);
+  background-image: url("/Ultra-Project/images/epic/comment-header.svg");
   background-repeat: no-repeat;
   background-position: 60px 10px;
   margin-bottom: 20px; }
