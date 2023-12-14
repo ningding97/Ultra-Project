@@ -28,7 +28,7 @@ jobs:
     - name: Build Jekyll site
       run: |
         bundle exec rake bootstrap
-        bundle exec rake build
+        bundle exec rake build 
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
