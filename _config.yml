@@ -70,44 +70,28 @@ series:
     url: series/open-source-by-default/
 
 oss_projects:
-  - title: Enhancing Chat Language Models by Scaling High-quality Instructional Conversations (EMNLP 2023)
+  - title: UltraChat
     # svg: "_includes/svg/force.svg"
     description:
       We introduce UltraChat, a large-scale dataset designed for training AI assistants, 
       featuring 1.5 million high-quality, diverse multi-turn dialogues without human queries. 
       Leveraging UltraChat, we fine-tuned a LLaMA model to create UltraLM, a powerful conversational model. 
 
-    category: project
+    category: dataset
     github: https://github.com/thunlp/UltraChat
     arxiv: https://arxiv.org/abs/2305.14233
     created: Apr 3rd, 2023
 
-  - title: Boosting Language Models with High-quality Feedback (ICLR 2024)
+  - title: UltraFeedback
     description:
       We introduce UltraFeedback, a large-scale, diversified dataset enhancing Reinforcement Learning from Human Feedback 
       (RLHF) in language models. Addressing the scarcity of diverse preference data, 
       it combines various instructions and models for comparative data. 
       We trained models like UltraRM, UltraLM-13B-PPO, and UltraCM using it.
 
-    category: project
+    category: dataset
     github: https://github.com/OpenBMB/UltraFeedback
     arxiv: https://arxiv.org/abs/2310.01377
-    created: Sep 7th, 2023
-
-  - title: UltraChat-1.5M
-    description:
-      The React component library shared across our web applications, letting us share expertise and experience
-      across engineering teams. Built on top of our project Palette.
-    category: dataset
-    huggingface: https://huggingface.co/datasets/stingning/ultrachat
-    created: Apr 7th, 2023
-
-  - title: UltraFeedback-64k
-    description:
-      The React component library shared across our web applications, letting us share expertise and experience
-      across engineering teams. Built on top of our project Palette.
-    category: dataset
-    huggingface: https://huggingface.co/datasets/openbmb/UltraFeedback
     created: Sep 7th, 2023
 
   - title: UltraEval
@@ -115,7 +99,7 @@ oss_projects:
       UltraEval is an open-source framework for evaluating the capabilities of foundation models, 
       providing a suite of lightweight, easy-to-use evaluation systems that support the performance 
       assessment of mainstream LLMs.
-    category: project
+    category: dataset
     website: https://ultraeval.openbmb.cn/rank
     github: https://github.com/OpenBMB/UltraEval
     created: Nov 24th, 2023
