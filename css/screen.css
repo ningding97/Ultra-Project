@@ -388,6 +388,16 @@ blockquote {
   color: #907890;
   /* 灰紫色的颜色代码 */ }
 
+.icon-container {
+  display: inline-block;
+  /* 或者使用 flex, grid 等布局方式 */
+  padding: 5px;
+  /* 边框与图标之间的距离 */
+  margin: 5px;
+  /* 边框之间的距离 */
+  text-decoration: none;
+  /* 移除下划线 */ }
+
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -532,7 +542,7 @@ blockquote {
         display: none; } }
 
 .sticky-wrapper {
-  min-height: 221px !important; }
+  min-height: 100px !important; }
 
 header#banner {
   width: 100%;
@@ -881,11 +891,11 @@ article .article-container-single .entry-content > figure {
         text-decoration: none; }
   #open-source-content #lead {
     width: 81%;
-    margin-bottom: 300px; }
+    margin-bottom: 50px; }
   #open-source-content svg {
     max-width: 100%; }
   #open-source-content .open-source-category-header {
-    margin-top: 350px;
+    margin-top: 50px;
     border-bottom: 1px solid #000; }
     #open-source-content .open-source-category-header .open-source-category-header-title {
       float: left;
