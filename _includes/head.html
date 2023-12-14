@@ -2,20 +2,6 @@
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-
-{% comment %}Calculate the page depth{% endcomment %}
-{% assign url_parts = page.url | split: '/' %}
-{% assign page_depth = url_parts | size | minus: 1 %}
-
-{% comment %}Initialize the relative path{% endcomment %}
-{% assign relative_path = '' %}
-
-{% comment %}Build the relative path by appending '../' for each level above 1{% endcomment %}
-{% for i in (2..page_depth) %}
-  {% assign relative_path = relative_path | append: '../' %}
-{% endfor %}
-
-
 <head>
   <meta charset="utf-8">
   <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
@@ -44,22 +30,22 @@
   <link rel="alternate" type="application/rss+xml" title="Artsy Engineering Blog" href="/feed">
   <link rel="alternate" type="application/atom+xml" title="Podcast Feed" href="/podcast.xml" />
 
-  <link href="{{ relative_path }}favicon.ico" rel="icon">
-  <link href="{{ relative_path }}css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="{{'/favicon.ico' | relative_url}}" rel="icon">
+  <link href="{{'/css/screen.css' | relative_url}}" media="screen, projection" rel="stylesheet" type="text/css">
 
-  <script src="{{ relative_path }}javascripts/jquery-1.11.3.min.js"> </script>
-  <script src="{{ relative_path }}javascripts/gradient-fade.js"></script>
-  <script src="{{ relative_path }}javascripts/noframework.waypoints.min.js"></script>
-  <script src="{{ relative_path }}javascripts/sticky.min.js"></script>
-  <script src="{{ relative_path }}javascripts/custom-element.min.js"></script>
-  <script src="{{ relative_path }}javascripts/g-emoji-element.js"></script>
-  <script src="{{ relative_path }}javascripts/related-articles.js "></script>
+  <script src="{{'/javascripts/jquery-1.11.3.min.js' | relative_url}}"> </script>
+  <script src="{{'/javascripts/gradient-fade.js' | relative_url}}"></script>
+  <script src="{{'/javascripts/noframework.waypoints.min.js' | relative_url}}"></script>
+  <script src="{{'/javascripts/sticky.min.js' | relative_url}}"></script>
+  <script src="{{'/javascripts/custom-element.min.js' | relative_url}}"></script>
+  <script src="{{'/javascripts/g-emoji-element.js' | relative_url}}"></script>
+  <script src="{{'/javascripts/related-articles.js' | relative_url}} "></script>
 
   {% if page.opensource == true %}
-  <script src="{{ relative_path }}javascripts/modernizr-2.0.js"></script>
-  <script src="{{ relative_path }}javascripts/jquery.scrollTo.min.js"></script>
+  <script src="{{'/javascripts/modernizr-2.0.js' | relative_url}}"></script>
+  <script src="{{'/javascripts/jquery.scrollTo.min.js' | relative_url}}"></script>
   {% endif %}
 
-  <link href="{{ relative_path }}site.subscribe_rss" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+  <link href="{{'/site.subscribe_rss' | relative_url}}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
   <!-- {% include google_analytics.html %} -->
 </head>

@@ -1,29 +1,18 @@
 <div id="header">
   
-  {% comment %}Calculate the page depth{% endcomment %}
-  {% assign url_parts = page.url | split: '/' %}
-  {% assign page_depth = url_parts | size | minus: 1 %}
-  
-  {% comment %}Initialize the relative path{% endcomment %}
-  {% assign relative_path = '' %}
-  
-  {% comment %}Build the relative path by appending '../' for each level above 1{% endcomment %}
-  {% for i in (2..page_depth) %}
-    {% assign relative_path = relative_path | append: '../' %}
-  {% endfor %}
 
   <div class="header-sticky-container">
     <div class="header-logo">
-      <h2><a href="{{ relative_path }}">UltraProject</a></h2>
+      <h2><a href="{{'/' | relative_url}}">UltraProject</a></h2>
     </div>
 
     <div class="header-navigation">
       <span class="header-section-title">
         <ul>
-          {{page_depth}} {{page_depth}} {{relative_path}}
-          <li><a href="{{ relative_path }}">Projects</a></li>
-          <li><a href="{{ relative_path }}team">Team</a></li>
-          <li><a href="{{ relative_path }}blog">Blog</a></li>
+          
+          <li><a href="{{'/' | relative_url}}">Projects</a></li>
+          <li><a href="{{'/team' | relative_url}}">Team</a></li>
+          <li><a href="{{'/blog' | relative_url}}">Blog</a></li>
           
         </ul>
       </span>
